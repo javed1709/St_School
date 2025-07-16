@@ -10,6 +10,10 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "*.{js,ts,jsx,tsx,mdx}"
   ],
+  safelist: [
+    'animate-marquee',
+    'animate-marquee-vertical'
+  ],
   theme: {
   	extend: {
   		colors: {
