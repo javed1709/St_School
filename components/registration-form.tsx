@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { X, User, Mail, Phone, BookOpen, Loader2 } from "lucide-react"
+import { X, User, Mail, Phone, BookOpen, Loader2, GraduationCap } from "lucide-react"
 import { coursesData } from "@/data/courses"
 
 interface RegistrationFormProps {
@@ -23,6 +23,7 @@ interface FormData {
   email: string
   mobile: string
   course: string
+  graduationYear: string
 }
 
 interface FormErrors {
@@ -30,6 +31,7 @@ interface FormErrors {
   email?: string
   mobile?: string
   course?: string
+  graduationYear?: string
 }
 
 export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }: RegistrationFormProps) {
@@ -38,6 +40,7 @@ export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }:
     email: "",
     mobile: "",
     course: selectedCourse || "",
+    graduationYear: "",
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -71,6 +74,9 @@ export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }:
     // Course validation
     if (!formData.course) {
       newErrors.course = "Please select a course"
+    }
+    if (!formData.graduationYear) {
+      newErrors.graduationYear = "Please select your graduation year"
     }
 
     setErrors(newErrors)
@@ -208,6 +214,35 @@ export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }:
                 </SelectContent>
               </Select>
               {errors.course && <p className="text-red-400 text-sm">{errors.course}</p>}
+            </div>
+
+            {/* Graduation Year Field */}
+            <div className="space-y-2">
+              <Label htmlFor="graduationYear" className="text-white flex items-center">
+                <GraduationCap className="w-4 h-4 mr-2" />
+                Graduation Year
+              </Label>
+              <Select
+                id="graduationYear"
+                value={formData.graduationYear}
+                onValueChange={(value) => handleInputChange("graduationYear", value)}
+              >
+                <SelectTrigger
+                  className={`bg-slate-800/50 border-slate-600 text-white focus:border-yellow-400 ${
+                    errors.graduationYear ? "border-red-500" : ""
+                  }`}
+                >
+                  <SelectValue placeholder="Select year" />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-800 border-slate-600">
+                  {["2022", "2023", "2024", "2025", "Still Pursuing"].map((year) => (
+                    <SelectItem key={year} value={year} className="text-white hover:bg-slate-700">
+                      {year}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.graduationYear && <p className="text-red-400 text-sm">{errors.graduationYear}</p>}
             </div>
 
             {/* Submit Button */}

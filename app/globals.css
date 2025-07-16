@@ -118,6 +118,12 @@
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
+
+  /* Ensure select dropdown always opens downward */
+  [data-radix-select-content][data-side="top"] {
+    top: var(--radix-select-trigger-height) !important;
+    transform: none !important;
+  }
 }
 
 @layer base {

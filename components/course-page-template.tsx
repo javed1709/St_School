@@ -490,7 +490,7 @@ export function CoursePageTemplate({ course }: CoursePageTemplateProps) {
         </p>
       )}
       {course.id === 'digital-marketing' && (
-        <p className="mt-2 text-slate-300 flex items-center justify-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
+        <p className="mt-2 text-yellow-400 flex items-center justify-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
           Includes access to all live sessions, project templates, AI tools, and certificate
         </p>
       )}
@@ -504,7 +504,7 @@ export function CoursePageTemplate({ course }: CoursePageTemplateProps) {
         </p>
       )}
       {course.id === 'embedded' && (
-        <p className="mt-2 text-slate-300 flex items-center justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <p className="mt-2 text-yellow-400 flex items-center justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
           Admission is via application + interview only
         </p>
       )}
