@@ -64,6 +64,13 @@ export function Navigation() {
                   >
                     Digital Marketing
                   </Link>
+                  <Link
+                    href="/courses/micro-courses"
+                    className="block px-4 py-2 text-white hover:text-yellow-400 transition-colors"
+                    onClick={() => setCoursesOpen(false)}
+                  >
+                    Micro Courses
+                  </Link>
                 </div>
               )}
             </div>

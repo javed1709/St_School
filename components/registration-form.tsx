@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -35,15 +35,39 @@ interface FormErrors {
 }
 
 export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }: RegistrationFormProps) {
+  // Determine if we're on micro-courses page
+  const isMicro = selectedCourse === 'micro-courses'
+  // List of micro course options
+  const microCoursesList = [
+    { id: 'ai-productivity-research', title: 'AI Productivity & Research' },
+    { id: 'gen-ai-prompt-engineering', title: 'Gen AI & Advanced Prompt Engineering' },
+    { id: 'ai-tools-software-development', title: 'AI Tools for Software Development' },
+    { id: 'ai-powered-ux-research-design', title: 'AI-Powered UX Research & Design' },
+    { id: 'ai-for-data-visualization-storytelling', title: 'AI for Data Visualization & Storytelling' },
+  ]
+  // Choose options based on context
+  const courseOptions = isMicro ? microCoursesList : coursesData
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     mobile: "",
-    course: selectedCourse || "",
+    course: isMicro ? "" : (selectedCourse || ""),
     graduationYear: "",
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
@@ -206,7 +230,7 @@ export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }:
                   <SelectValue placeholder="Choose your course" />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-800 border-slate-600">
-                  {coursesData.map((course) => (
+                  {courseOptions.map((course) => (
                     <SelectItem key={course.id} value={course.id} className="text-white hover:bg-slate-700">
                       {course.title}
                     </SelectItem>

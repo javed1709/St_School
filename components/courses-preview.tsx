@@ -11,25 +11,27 @@ import { RegistrationForm } from "@/components/registration-form"
 import { ThankYouPage } from "@/components/thank-you-page"
 
 const courses = [
+  // Priority 1: Micro Courses
   {
-    id: "ui-ux",
-    title: "UI/UX Design",
-    subtitle: "Product Designer Fellowship",
-    description: "Learn the full design process from research to prototype.",
-    duration: "3 months",
-    students: "33 seats",
-    rating: 4.9,
-    price: "₹49,999",
-    originalPrice: "₹69,999",
+    id: "micro-courses",
+    title: "⚡ Micro Courses Powered by AI",
+    subtitle: "",
+    description: "Short-Term, High-Impact Programs for Students & Working Professionals",
+    duration: "15–18 Days",
+    students: "5 Courses",
+    rating: 5.0,
+    price: "₹2,500",
     features: [
-      "Master tools like Figma, Notion, Whimsical & more",
-      "Build 2+ real case studies & get design reviews",
-      "Perfect for students from any background",
-      "1:1 mentorship from senior designers",
+      "AI Productivity & Research",
+      "Gen AI & Advanced Prompt Engineering",
+      "AI Tools for Software Development",
+      "AI-Powered UX Research & Design",
+      "AI for Data Visualization & Storytelling",
     ],
-    color: "from-blue-500 to-cyan-500",
-    icon: "🎨",
+    color: "from-yellow-400 to-yellow-500",
+    icon: "⚡",
   },
+  // Priority 2: MERN + DSA
   {
     id: "mern-dsa",
     title: "MERN + DSA",
@@ -49,6 +51,27 @@ const courses = [
     color: "from-green-500 to-emerald-500",
     icon: "💻",
   },
+  // Priority 3: UI/UX Design
+  {
+    id: "ui-ux",
+    title: "UI/UX Design",
+    subtitle: "Product Designer Fellowship",
+    description: "Learn the full design process from research to prototype.",
+    duration: "3 months",
+    students: "33 seats",
+    rating: 4.9,
+    price: "₹49,999",
+    originalPrice: "₹69,999",
+    features: [
+      "Master tools like Figma, Notion, Whimsical & more",
+      "Build 2+ real case studies & get design reviews",
+      "Perfect for students from any background",
+      "1:1 mentorship from senior designers",
+    ],
+    color: "from-blue-500 to-cyan-500",
+    icon: "🎨",
+  },
+  // Priority 4: Embedded Systems
   {
     id: "embedded",
     title: "Embedded Systems",
@@ -68,6 +91,7 @@ const courses = [
     color: "from-purple-500 to-pink-500",
     icon: "🔧",
   },
+  // Priority 5: Digital Marketing AI
   {
     id: "digital-marketing",
     title: "Digital Marketing with AI",

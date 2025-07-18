@@ -46,6 +46,7 @@ import { RegistrationForm } from "@/components/registration-form"
 import { ThankYouPage } from "@/components/thank-you-page"
 import { Timeline } from "@/components/timeline"
 import Image from "next/image"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 interface CoursePageTemplateProps {
   course: CourseData
@@ -283,47 +284,57 @@ export function CoursePageTemplate({ course }: CoursePageTemplateProps) {
       {/* What You'll Learn (Course Modules) */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-fade-in">
-            {course.id === "ui-ux" 
-              ? <>Course <span className="text-yellow-400">Curriculum</span></> 
-              : <>What You'll <span className="gradient-text">Learn</span></>}
+          <h2 className="text-4xl font-bold text-center mb-4 animate-fade-in">
+            {course.id === "ui-ux"
+              ? <>Course <span className="text-yellow-400">Curriculum</span></>
+              : <>What You&apos;ll <span className="gradient-text">Learn</span></>}
           </h2>
           {course.id === "ui-ux" ? (
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="glass-effect border-slate-700/50 animate-scale-in transition-all duration-300 hover:scale-[1.02]">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <Building className="w-6 h-6 text-yellow-400 mr-2" />
-                    <h3 className="text-2xl font-bold text-white">Offline</h3>
-                  </div>
-                  <ul className="list-disc list-inside text-slate-300 space-y-2">
-                    <li><span className="font-semibold text-white">Week 1 - 3:</span> Introduction to Design Thinking, Design Basics</li>
-                    <li><span className="font-semibold text-white">Week 4:</span> Graphic Design</li>
-                    <li><span className="font-semibold text-white">Week 5:</span> Branding</li>
-                    <li><span className="font-semibold text-white">Week 6 - 8:</span> Introduction to UX, UX methods</li>
-                    <li><span className="font-semibold text-white">Week 9 - 10:</span> Information Architecture</li>
-                    <li><span className="font-semibold text-white">Week 11 - 13:</span> Introduction to UI, Wireframes, UI Screens</li>
-                    <li><span className="font-semibold text-white">Week 14:</span> Testing</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="glass-effect border-slate-700/50 animate-scale-in transition-all duration-300 hover:scale-[1.02]">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <Laptop className="w-6 h-6 text-yellow-400 mr-2" />
-                    <h3 className="text-2xl font-bold text-white">Online</h3>
-                  </div>
-                  <ul className="list-disc list-inside text-slate-300 space-y-2">
-                    <li><span className="font-semibold text-white">Week 1:</span> Introduction to the design, Designer Mindset</li>
-                    <li><span className="font-semibold text-white">Week 2:</span> Typography and Color theory</li>
-                    <li><span className="font-semibold text-white">Week 3 - 7:</span> Design thinking and UX methods</li>
-                    <li><span className="font-semibold text-white">Week 8 - 10:</span> Introduction of UI and UI Screens</li>
-                    <li><span className="font-semibold text-white">Week 11 - 12:</span> Portfolio Building</li>
-                    <li><span className="font-semibold text-white">Week 13-14:</span> Testing and Portfolio Building</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+            <Tabs defaultValue="online" className="mx-auto w-fit items-center">
+              <TabsList>
+                <TabsTrigger value="online">Online</TabsTrigger>
+                <TabsTrigger value="offline">Offline</TabsTrigger>
+              </TabsList>
+              <TabsContent value="online">
+                {/* Online Card */}
+                <Card className="glass-effect border-slate-700/50 animate-scale-in transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <Laptop className="w-6 h-6 text-yellow-400 mr-2" />
+                      <h3 className="text-2xl font-bold text-white">Online</h3>
+                    </div>
+                    <ul className="list-disc list-inside text-slate-300 space-y-2">
+                      <li><strong>Week 1:</strong> Introduction to the design, Designer Mindset</li>
+                      <li><strong>Week 2:</strong> Typography and Color theory</li>
+                      <li><strong>Week 3 - 7:</strong> Design thinking and UX methods</li>
+                      <li><strong>Week 8 - 10:</strong> Introduction of UI and UI Screens</li>
+                      <li><strong>Week 11 - 12:</strong> Portfolio Building</li>
+                      <li><strong>Week 13-14:</strong> Testing and Portfolio Building</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="offline">
+                {/* Offline Card */}
+                <Card className="glass-effect border-slate-700/50 animate-scale-in transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <Building className="w-6 h-6 text-yellow-400 mr-2" />
+                      <h3 className="text-2xl font-bold text-white">Offline</h3>
+                    </div>
+                    <ul className="list-disc list-inside text-slate-300 space-y-2">
+                      <li><strong>Week 1 - 3:</strong> Introduction to Design Thinking, Design Basics</li>
+                      <li><strong>Week 4:</strong> Graphic Design</li>
+                      <li><strong>Week 5:</strong> Branding</li>
+                      <li><strong>Week 6 - 8:</strong> Introduction to UX, UX methods</li>
+                      <li><strong>Week 9 - 10:</strong> Information Architecture</li>
+                      <li><strong>Week 11 - 13:</strong> Introduction to UI, Wireframes, UI Screens</li>
+                      <li><strong>Week 14:</strong> Testing</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {course.courseModules.map((module, index) => {
@@ -349,11 +360,6 @@ export function CoursePageTemplate({ course }: CoursePageTemplateProps) {
                 )
               })}
             </div>
-          )}
-          {course.id === "mern-dsa" && (
-            <p className="text-xl text-slate-300 text-center max-w-3xl mx-auto mb-8">
-              A job-focused curriculum for both frontend and backend mastery.
-            </p>
           )}
         </div>
       </section>
