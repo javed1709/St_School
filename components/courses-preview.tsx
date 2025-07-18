@@ -14,8 +14,8 @@ const courses = [
   // Priority 1: Micro Courses
   {
     id: "micro-courses",
-    title: "⚡ Micro Courses Powered by AI",
-    subtitle: "",
+    title: "Micro Courses Powered by AI",
+    subtitle: "Demanded Skills",
     description: "Short-Term, High-Impact Programs for Students & Working Professionals",
     duration: "15–18 Days",
     students: "5 Courses",
@@ -113,6 +113,26 @@ const courses = [
   },
 ]
 
+// Custom navy-blue lightning icon component
+const NavyLightningIcon = ({ size = 48, className = "" }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M13 2L3 14h6l-2 8 10-12h-6l2-8z"
+      fill="#1e3a8a"
+      stroke="#1e3a8a"
+      strokeWidth="1"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 export function CoursesPreviewSection() {
   const { isFormOpen, isThankYouOpen, openForm, closeForm, closeThankYou, handleRegistrationSuccess } =
     useRegistration()
@@ -140,7 +160,7 @@ export function CoursesPreviewSection() {
                 {/* Header with gradient */}
                 <div className={`bg-gradient-to-r ${course.color} p-6 text-white`}>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-4xl">{course.icon}</div>
+                    {course.id === 'micro-courses' ? <NavyLightningIcon /> : <div className="text-4xl">{course.icon}</div>}
                     <div className="flex items-center space-x-2">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       <span className="text-sm font-medium">{course.rating}</span>

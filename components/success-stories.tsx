@@ -122,7 +122,7 @@ export function SuccessStoriesSection() {
 				{/* Marquee Success Stories */}
 				<div className="relative flex h-[600px] w-full flex-col items-center justify-center overflow-hidden rounded-lg">
 					{firstRow.length > 0 && (
-						<Marquee pauseOnHover className="[--duration:60s] [--gap:1rem]">
+						<Marquee pauseOnHover className="[--duration:10s] [--gap:1rem]">
 							{firstRow.map((story, index) => (
 								<SuccessStoryCard
 									key={`${story.name}-${index}`}
@@ -136,7 +136,7 @@ export function SuccessStoriesSection() {
 						<Marquee
 							reverse
 							pauseOnHover
-							className="[--duration:60s] [--gap:1rem]"
+							className="[--duration:10s] [--gap:1rem]"
 						>
 							{secondRow.map((story, index) => (
 								<SuccessStoryCard
