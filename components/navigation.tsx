@@ -3,6 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, ChevronDown } from "lucide-react"
+import Image from "next/image"
+import Logo from "../st_school_logo_final_2.png"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,8 +22,14 @@ export function Navigation() {
     <nav className="fixed top-0 w-full z-50 glass-effect animate-fade-in">
       <div className="container mx-auto px-10 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold gradient-text">
-            St. School
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src={Logo}
+              alt="St. School Logo"
+              width={150}
+              height={150}
+            />
+            <span className="text-2xl font-bold gradient-text"></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -63,13 +71,6 @@ export function Navigation() {
                     onClick={() => setCoursesOpen(false)}
                   >
                     Digital Marketing
-                  </Link>
-                  <Link
-                    href="/courses/micro-courses"
-                    className="block px-4 py-2 text-white hover:text-yellow-400 transition-colors"
-                    onClick={() => setCoursesOpen(false)}
-                  >
-                    Micro Courses
                   </Link>
                 </div>
               )}
