@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { X, User, Mail, Phone, BookOpen, Loader2, GraduationCap } from "lucide-react"
 import { coursesData } from "@/data/courses"
+import { db } from "@/firebaseConfig"
+import { collection, addDoc } from "firebase/firestore"
 
 interface RegistrationFormProps {
   isOpen: boolean
@@ -117,16 +119,22 @@ export function RegistrationForm({ isOpen, onClose, onSuccess, selectedCourse }:
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // Store registration data (in real app, this would be sent to backend)
-      localStorage.setItem("registrationData", JSON.stringify(formData))
+      // Prepare separate date and time fields
+      const now = new Date()
+      const date = now.toISOString().split('T')[0]  // YYYY-MM-DD
+      const time = now.toISOString().split('T')[1].split('.')[0]  // HH:mm:ss
+      // Submit registration data to Firestore with date and time
+      await addDoc(collection(db, 'responses'), {
+        ...formData,
+        date,
+        time
+      })
 
       onSuccess()
       onClose()
     } catch (error) {
       console.error("Registration failed:", error)
+      alert("Submission failed")
     } finally {
       setIsSubmitting(false)
     }
